@@ -1,0 +1,141 @@
+version: "4.1"
+name: dock
+type: ARM
+deviceName: GD32E513VC
+packDir: .pack/GigaDevice/GD32E51x_DFP.1.5.0
+srcDirs: []
+virtualFolder:
+  name: <virtual_root>
+  files: []
+  folders:
+    - name: app
+      files:
+        - path: app/source/gd32e51x_it.c
+        - path: app/source/main.c
+        - path: app/source/systick.c
+        - path: app/source/gd32e513z_eval.c
+      folders: []
+    - name: fimware
+      files: []
+      folders:
+        - name: cmsis
+          files:
+            - path: fw/CMSIS/Source/system_gd32e51x.c
+          folders: []
+        - name: lib
+          files:
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_adc.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_bkp.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_can.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_cmp.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_crc.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_ctc.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_dac.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_dbg.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_dma.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_enet.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_exmc.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_exti.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_fmc.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_fwdgt.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_gpio.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_i2c.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_misc.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_pmu.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_rcu.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_rtc.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_sdio.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_shrtimer.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_spi.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_sqpi.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_timer.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_tmu.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_usart.c
+            - path: fw/GD32E51x_standard_peripheral/Source/gd32e51x_wwdgt.c
+          folders: []
+    - name: ld
+      files:
+        - path: ld/gd32e513.ld
+        - path: ld/startup_gd32e51x_hd.S
+      folders: []
+    - name: rtos
+      files:
+        - path: rtos/source/event_groups.c
+        - path: rtos/source/list.c
+        - path: rtos/source/queue.c
+        - path: rtos/source/stream_buffer.c
+        - path: rtos/source/tasks.c
+        - path: rtos/source/timers.c
+      folders:
+        - name: portable
+          files:
+            - path: rtos/source/portable/MemMang/heap_4.c
+            - path: rtos/source/portable/GCC/ARM_CM33_NTZ/non_secure/port.c
+            - path: rtos/source/portable/GCC/ARM_CM33_NTZ/non_secure/portasm.c
+          folders: []
+dependenceList: []
+outDir: build
+miscInfo:
+  uid: f5b287d1f0055befca8331edd40efe98
+targets:
+  Debug:
+    cppPreprocessAttrs:
+      defineList:
+        - GD32E51X_HD
+        - GD32E51x_HD
+      incList:
+        - .
+        - app/include
+        - fw/CMSIS/Include
+        - fw/GD32E51x_standard_peripheral/Include
+        - rtos/include
+        - rtos/source/portable/GCC/ARM_CM33_NTZ/non_secure
+      libList: []
+    excludeList: []
+    settings:
+      debugger: cortex-debug
+    toolchain: GCC
+    toolchainConfigMap:
+      GCC:
+        archExtensions: ""
+        cpuType: Cortex-M33
+        floatingPointHardware: single
+        options:
+          version: 5
+          afterBuildTasks: []
+          asm-compiler: {}
+          beforeBuildTasks: []
+          c/cpp-compiler:
+            language-c: c11
+            language-cpp: c++11
+            one-elf-section-per-data: true
+            one-elf-section-per-function: true
+            optimization: level-debug
+            warnings: all-warnings
+          global:
+            $float-abi-type: hard
+            arm-thumb-mode: thumb
+            not-use-syscalls: true
+            output-debug-info: enable
+            use-newlib-nano: true
+          linker:
+            $toolName: auto
+            LIB_FLAGS: -lm
+            output-format: elf
+            remove-unused-input-sections: true
+        scatterFilePath: d:\mcu\gd\dock\dock\ld\gd32e513.ld
+        storageLayout:
+          RAM: []
+          ROM: []
+        useCustomScatterFile: true
+    uploadConfigMap:
+      JLink:
+        baseAddr: ""
+        bin: ""
+        cpuInfo:
+          cpuName: GD32E513VCT6
+          vendor: GigaDevice
+        otherCmds: ""
+        proType: 1
+        speed: 8000
+    uploader: JLink
